@@ -1,0 +1,59 @@
+{
+    "description": "The Steel Industry Energy Consumption dataset from DAEWOO Steel Co. in South Korea, records electricity consumption patterns to predict load type (Light Load, Medium Load, Maximum Load). The dataset includes energy usage (kWh), reactive power (kVarh), CO2 emissions (ppm), power factors (%), and time-based factors such as seconds from midnight, weekday/weekend status, and the day of the week. These attributes help analyze power efficiency and demand fluctuations. The data supports predictive modeling for optimizing energy consumption, reducing CO2 emissions, and improving cost efficiency in steel manufacturing.",
+    "task": "Predict load type based on energy consumption and time-related attributes.",
+    "task_type": "Classification",
+    "num_records": 10512,
+    "num_features": 10,
+    "features": {
+        "Usage_kWh": "Energy consumption in kilowatt-hours, measured in kWh (continuous, ratio)",
+        "Lagging_Current_Reactive_Power": "Amount of reactive power with lagging current, measured in kVarh (continuous, ratio)",
+        "Leading_Current_Reactive_Power": "Amount of reactive power with leading current, measured in kVarh (continuous, ratio)",
+        "CO2(tCO2)": "Carbon dioxide concentration, measured in ppm (continuous, ratio)",
+        "Lagging_Current_Power_Factor": "Power factor for lagging current, measured in % (continuous, ratio)",
+        "Leading_Current_Power_Factor": "Power factor for leading current, measured in % (continuous, ratio)",
+        "NSM": "Number of Seconds from midnight, measured in seconds (continuous, ratio)",
+        "WeekStatus": "Categorical variable indicating Weekend (0) or Weekday (1) (categorical, nominal)",
+        "Day_of_week": "Categorical variable indicating the day of the week (Sunday, Monday, ..., Saturday) (categorical, nominal)",
+        "Load_Type": "Categorical variable indicating the load type (Light Load, Medium Load, Maximum Load) (categorical, nominal)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption",
+    "issues": {
+        "Data Consistency": [
+            "Changed Usage_kWh column to string format",
+            "High correlation between Usage_kWh and CO2(tCO2), one should be dropped",
+            "High negative correlation between Leading_Current_Reactive_Power and Leading_Current_Power_Factor, one should be dropped"
+        ],
+        "Null Value Management": [
+            "Added 3% null values to NSM column",
+            "Added 5% null values to CO2(tCO2) column",
+            "Added 10% null values to Day_of_week column"
+        ],
+        "Outlier Management": [
+            "Leading_Current_Power_Factor has lots of outliers",
+            "Leading_Current_Reactive_Power has lots of outliers"
+        ],
+        "Feature Engineering": [
+            "WeekStatus needs to be encoded numerically",
+            "Day_of_week needs to be encoded numerically",
+            "Load_Type needs to be encoded numerically"
+        ]
+    },
+    "evaluation": {
+        "duplicate_rows": 3,
+        "null_values": {
+            "CO2(tCO2)": 526,
+            "NSM": 315,
+            "Day_of_week": 1051
+        },
+        "total_corrupted_rows": 2804,
+        "categorical_cols": [
+            "WeekStatus",
+            "Day_of_week",
+            "Load_Type"
+        ],
+        "high_correlation": [
+            ["CO2(tCO2)", "Usage_kWh"],
+            ["Leading_Current_Power_Factor ", "Leading_Current_Reactive_Power"]
+        ]
+    }
+}

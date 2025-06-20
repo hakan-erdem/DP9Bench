@@ -1,0 +1,55 @@
+{
+    "description": "The Abalone dataset is used to predict the age of abalone based on physical measurements. Since determining age traditionally requires cutting the shell and counting rings under a microscope, this dataset provides an alternative approach using easily obtainable features. It consists of both categorical and continuous attributes, including sex (M, F, I for infant), length, diameter, height, whole weight, shucked weight, viscera weight, and shell weight. The target variable, 'Rings,' represents the number of growth rings, and adding 1.5 approximates the abalone’s age in years. This dataset is widely used for regression tasks in machine learning.",
+    "task": "Predict the age of abalone based on physical measurements.",
+    "task_type": "Regression",
+    "num_records": 4177,
+    "num_features": 9,
+    "features": {
+        "Sex": "Sex of the abalone (categorical, nominal)",
+        "Length": "Longest shell measurement in millimeters (continuous, ratio)",
+        "Diameter": "Diameter perpendicular to the length in millimeters (continuous, ratio)",
+        "Height": "Height with meat in shell in millimeters (continuous, ratio)",
+        "Whole_weight": "Whole weight of the abalone in grams (continuous, ratio)",
+        "Shucked_weight": "Weight of the meat in grams (continuous, ratio)",
+        "Viscera_weight": "Weight of the gut in grams (continuous, ratio)",
+        "Shell_weight": "Weight of the shell after drying in grams (continuous, ratio)",
+        "Rings": "Number of growth rings, adding 1.5 gives the age in years (continuous, ratio)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/1/abalone",
+    "issues": {
+        "Data Consistency": [
+            "Lower cased 3% of the values in the Sex column",
+            "Added a slightly noisy version of Shell_weight named Shell_thickness. They have 95% correlation"
+        ],
+        "Null Value Management": [
+            "Added 5% null values to the Length column",
+            "Added 5% null values to the Height column",
+            "Added 5% null values to the Viscera_weight column"
+        ],
+        "Outlier Management": [
+            "Added 5% outliers to the Height by multiplying by 3",
+            "Made 5% of the Shucked_weight values negative to simulate left side outliers"
+        ],
+        "Feature Engineering": [
+            "Sex column needs numerical encoding",
+            "Whole_weight column needs to be dropped due to high correlation with other features",
+            "Either diameter or length column should be dropped due to high correlation with each other"
+        ]
+    },"evaluation": {
+        "null_values": {
+            "Length": 209,
+            "Height": 209,
+            "Viscera_weight": 209
+        },
+        "total_corrupted_rows": 416,
+        "categorical_cols": [
+            "Sex"
+        ],
+        "high_correlation": [
+            ["Diameter", "Length"],
+            ["Shucked_weight", "Whole_weight"],
+            ["Viscera_weight", "Whole_weight"],
+            ["Shell_weight", "Whole_weight"]
+        ]
+    }
+}

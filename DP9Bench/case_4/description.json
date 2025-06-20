@@ -1,0 +1,54 @@
+{
+    "description": "This dataset, sourced from Cortez et al., 2009, contains physicochemical properties of wine samples alongside sensory-based quality ratings. It includes 11 input variables representing chemical characteristics such as acidity, sugar content, sulfur dioxide levels, pH, and alcohol percentage. The target variable is wine quality, scored between 0 and 10 based on sensory evaluations. The dataset can be used for regression or classification tasks to model the relationship between chemical composition and perceived wine quality.",
+    "task": "Predict the quality of wine based on its physicochemical properties.",
+    "task_type": "Regression/Classification",
+    "num_records": 6497,
+    "num_features": 12,
+    "features": {
+        "fixed_acidity": "Acidity of the wine, determined by the amount of dissolved acid (continuous, ratio)",
+        "volatile_acidity": "Acidity that evaporates (e.g., acetic acid) (continuous, ratio)",
+        "citric_acid": "Amount of citric acid in the wine (continuous, ratio)",
+        "residual_sugar": "Amount of residual sugar in the wine (continuous, ratio)",
+        "chlorides": "Amount of chlorides in the wine (continuous, ratio)",
+        "free_sulfur_dioxide": "Amount of free sulfur dioxide in the wine (continuous, ratio)",
+        "total_sulfur_dioxide": "Amount of total sulfur dioxide in the wine (continuous, ratio)",
+        "density": "Density of the wine (continuous, ratio)",
+        "pH": "pH of the wine (continuous, ratio)",
+        "sulphates": "Amount of sulphates in the wine (continuous, ratio)",
+        "alcohol": "Percentage of alcohol in the wine (continuous, ratio)",
+        "quality": "Quality score of the wine, ranging from 0 to 10 (continuous, ordinal)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/186/wine+quality",
+    "issues": {
+        "Data Consistency": [
+            "Added 10 duplicate rows to the dataset",
+            "Made some negative values in residual sugar (5% of the data)",
+            "Changed citric_acid to string data type",
+            "Changed volatile_acidity in some rows to 'low' or 'high' (mixing text and numbers)"
+        ],
+        "Null Value Management": [
+            "650 null values in chlorides column",
+            "1299 null values in pH column"
+        ],
+        "Outlier Management": [
+            "Added outliers to the alcohol column (2% of the data). Alcohol values multiplied by 3",
+            "Set fixed_acidity to 50 for 2% of the data"
+        ],
+        "Feature Engineering": [
+            "citric_acid column needs to be converted to numeric",
+            "volatile_acidity column needs to be converted to numeric"
+        ]
+    },
+    "evaluation": {
+        "duplicate_rows": 374,
+        "null_values": {
+            "chlorides": 650,
+            "pH": 1299
+        },
+        "total_corrupted_rows": 1221,
+        "categorical_cols": [
+            "volatile_acidity",
+            "citric_acid"
+        ]
+    }
+}

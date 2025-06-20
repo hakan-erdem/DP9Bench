@@ -1,0 +1,48 @@
+{
+    "description": "The Concrete Compressive Strength dataset consists of 1,030 instances and 9 attributes, with 8 quantitative input variables and 1 quantitative output variable. It is used to predict the compressive strength of concrete, a crucial material in civil engineering. The dataset includes measurements of cement, blast furnace slag, fly ash, water, superplasticizer, coarse and fine aggregates, and the concrete's age (ranging from 1 to 365 days). The target variable is the concrete's compressive strength in MPa. This dataset is valuable for regression modeling to analyze how different material compositions and aging periods affect concrete strength.",
+    "task": "Predict the compressive strength of concrete based on material composition and aging period.",
+    "task_type": "Regression",
+    "num_records": 1030,
+    "num_features": 9,
+    "features": {
+        "Cement": "Amount of cement used in the concrete mix, measured in kg in a m3 mixture (continuous, ratio)",
+        "Blast Furnace Slag": "Amount of blast furnace slag used in the concrete mix, measured in kg in a m3 mixture (integer, ratio)",
+        "Fly Ash": "Amount of fly ash used as a partial cement replacement, measured in kg in a m3 mixture (continuous, ratio)",
+        "Water": "Amount of water used in the concrete mix, measured in kg in a m3 mixture (continuous, ratio)",
+        "Superplasticizer": "Amount of superplasticizer used to improve workability, measured in kg in a m3 mixture (continuous, ratio)",
+        "Coarse Aggregate": "Quantity of coarse aggregates (e.g., gravel) in the mix, measured in kg in a m3 mixture (continuous, ratio)",
+        "Fine Aggregate": "Quantity of fine aggregates (e.g., sand) in the mix, measured in kg in a m3 mixture (continuous, ratio)",
+        "Age": "Curing age of the concrete specimen before testing, measured in days (1 to 365) (integer, ratio)",
+        "Concrete Compressive Strength": "The target variable representing the compressive strength of concrete. measured in MPa (continuous, ratio)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength",
+    "issues": {
+        "Data Consistency": [
+            "Added negative values to Age column",
+            "Created a copy of Fine Aggregate column named Fine_Agg_Copy, which should be dropped",
+            "Created a scaled version of Cement named Cement_Scaled, which should be dropped"
+        ],
+        "Null Value Management": [
+            "Added 3% null values to Water column",
+            "Added 5% null values to Superplasticizer column",
+            "Added 2% null values to Concrete Compressive Strength target column forcing those rows to be dropped"
+        ],
+        "Outlier Management": [
+            "Added upper side outliers to Blast Furnace Slag column",
+            "Added both sided outliers to Coarse Aggregate column"
+        ]
+    },
+    "evaluation": {
+        "duplicate_rows": 16,
+        "null_values": {
+            "Water": 31,
+            "Superplasticizer": 52,
+            "Concrete Compressive Strength": 21
+        },
+        "total_corrupted_rows": 122,
+        "high_correlation": [
+            ["Fine Aggregate", "Fine_Agg_Copy"],
+            ["Cement", "Cement_Scaled"]
+        ]
+    }
+}

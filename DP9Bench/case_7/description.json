@@ -1,0 +1,80 @@
+{
+    "description": "The House Rental Price dataset, collected from Craigslist.org, contains 7500 house records with 22 attributes. It includes details such as region, price (target variable), housing type, square footage, number of beds and baths. The dataset is useful for building predictive models to estimate monthly rental prices based on property characteristics, location, and amenities. This dataset is valuable for real estate market analysis, price prediction, and rental trend studies.",
+    "task": "Predict the monthly rental price based on various property characteristics and amenities.",
+    "task_type": "Regression",
+    "num_records": 7500,
+    "num_features": 22,
+    "features": {
+        "id": "Listing ID (categorical, nominal)",
+        "url": "Listing URL (categorical, nominal)",
+        "region": "Craigslist region (categorical, nominal)",
+        "region_url": "Region URL (categorical, nominal)",
+        "price": "Rent per month (continuous, ratio)",
+        "type": "Housing type (categorical, nominal)",
+        "sqfeet": "Total square footage (continuous, ratio)",
+        "beds": "Number of beds (integer, ratio)",
+        "baths": "Number of bathrooms (integer, ratio)",
+        "cats_allowed": "Cats allowed (binary, categorical)",
+        "dogs_allowed": "Dogs allowed (binary, categorical)",
+        "smoking_allowed": "Smoking allowed (binary, categorical)",
+        "wheelchair_access": "Wheelchair access available (binary, categorical)",
+        "electric_vehicle_charge": "Electric vehicle charger available (binary, categorical)",
+        "comes_furnished": "Comes furnished (binary, categorical)",
+        "laundry_options": "Laundry options available (categorical, nominal)",
+        "parking_options": "Parking options available (categorical, nominal)",
+        "image_url": "Image URL (categorical, nominal)",
+        "description": "Description by the poster (text, nominal)",
+        "lat": "Latitude of the listing (continuous, ratio)",
+        "long": "Longitude of the listing (continuous, ratio)",
+        "state": "State of the listing (categorical, nominal)"
+    },
+    "source": "https://www.kaggle.com/datasets/rkb0023/houserentpredictiondataset",
+    "issues": {
+        "Data Consistency": [
+            "id, url, region_url, and image_url features should be dropped",
+            "baths feature has floating points, it should be integer"
+        ],
+        "Null Value Management": [
+            "laundry_options has null values",
+            "parking_options has null values",
+            "lat has null values",
+            "long has null values"
+        ],
+        "Outlier Management": [
+            "Outliers in price",
+            "Outliers in sqfeet",
+            "Outliers in beds",
+            "Outliers in baths",
+            "Price column has 0 values, need appropriate lower value adjustment (i.e. 400)"
+        ],
+        "Feature Engineering": [
+            "pets_allowed feature should be created by merging cats_allowed and dogs_allowed",
+            "New features should be created from description column, if not description column should be dropped",
+            "region, type, laundry_options, parking_options, state need numerical encoding",
+            "region column has too many categories, it should be dropped"
+        ]
+    },
+    "evaluation": {
+        "null_values": {
+            "laundry_options": 1554,
+            "parking_options": 2711,
+            "lat": 42,
+            "long": 42
+        },
+        "total_corrupted_rows": 730,
+        "categorical_cols": [
+            "type",
+            "laundry_options",
+            "parking_options",
+            "state"
+        ],
+        "cols_to_drop": [
+            "id",
+            "url",
+            "region_url",
+            "image_url",
+            "region",
+            "description"
+        ]
+    }
+}

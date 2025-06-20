@@ -1,0 +1,85 @@
+{
+    "description": "The 'Mushroom' dataset contains 8,124 samples of hypothetical mushrooms from the Agaricus and Lepiota families. Each sample includes 23 attributes related to physical characteristics such as cap shape, cap color, gill spacing, stalk color, odor, and habitat. The dataset classifies mushrooms into three categories: edible, poisonous, and of unknown edibility (which was combined with the poisonous category). The goal is to use these physical characteristics to classify mushrooms based on their edibility.",
+    "task": "Classify mushrooms based on their edibility (edible or poisonous) using physical characteristics.",
+    "task_type": "Classification",
+    "num_records": 8124,
+    "num_features": 23,
+    "features": {
+        "cap-shape": "Shape of the mushroom cap (categorical, nominal)",
+        "cap-surface": "Surface texture of the mushroom cap (categorical, nominal)",
+        "cap-color": "Color of the mushroom cap (categorical, nominal)",
+        "bruises": "Whether the mushroom has bruises (categorical, nominal)",
+        "odor": "Odor of the mushroom (categorical, nominal)",
+        "gill-attachment": "Attachment of the gills (categorical, nominal)",
+        "gill-spacing": "Spacing of the gills (categorical, nominal)",
+        "gill-size": "Size of the gills (categorical, nominal)",
+        "gill-color": "Color of the gills (categorical, nominal)",
+        "stalk-shape": "Shape of the mushroom stalk (categorical, nominal)",
+        "stalk-root": "Root of the mushroom stalk (categorical, nominal)",
+        "stalk-surface-above-ring": "Surface texture above the stalk ring (categorical, nominal)",
+        "stalk-surface-below-ring": "Surface texture below the stalk ring (categorical, nominal)",
+        "stalk-color-above-ring": "Color of the stalk above the ring (categorical, nominal)",
+        "stalk-color-below-ring": "Color of the stalk below the ring (categorical, nominal)",
+        "veil-type": "Type of veil covering the mushroom (categorical, nominal)",
+        "veil-color": "Color of the veil (categorical, nominal)",
+        "ring-number": "Number of rings on the stalk (categorical, nominal)",
+        "ring-type": "Type of the ring on the stalk (categorical, nominal)",
+        "spore-print-color": "Color of the spore print (categorical, nominal)",
+        "population": "Population density of the mushroom (categorical, nominal)",
+        "habitat": "Habitat where the mushroom was found (categorical, nominal)",
+        "class": "Class indicating whether the mushroom is edible (e) or poisonous (p) (categorical, nominal)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/73/mushroom",
+    "issues": {
+        "Data Consistency": [
+            "10% of the cap-color values are converted to upper case",
+            "Added random numbers to 5% of the ring-number column",
+            "Created a duplicate column of gill-color named 'Gill_Color'"
+        ],
+        "Null Value Management": [
+            "2480 null values in stalk-root column",
+            "Added 20% null values to the gill-attachment column",
+            "Added 30% null values to the odor column",
+            "Added 20% null values to the cap-shape column"
+        ],
+        "Outlier Management": [],
+        "Feature Engineering": [
+            "All (23) features are categorical and need numerical encoding"
+        ]
+    },
+    "evaluation": {
+        "duplicate_rows": 92,
+        "null_values": {
+            "cap-shape": 1625,
+            "odor": 2437,
+            "gill-attachment": 1625,
+            "stalk-root": 2480
+        },
+        "cols_to_drop": [["Gill_Color", "gill-color"]],
+        "categorical_cols": [
+            "cap-shape",
+            "cap-surface",
+            "cap-color",
+            "bruises",
+            "odor",
+            "gill-attachment",
+            "gill-spacing",
+            "gill-size",
+            "gill-color",
+            "stalk-shape",
+            "stalk-root",
+            "stalk-surface-above-ring",
+            "stalk-surface-below-ring",
+            "stalk-color-above-ring",
+            "stalk-color-below-ring",
+            "veil-type",
+            "veil-color",
+            "ring-number",
+            "ring-type",
+            "spore-print-color",
+            "population",
+            "habitat",
+            "class"
+        ]
+    }
+}

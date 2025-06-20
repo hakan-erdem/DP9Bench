@@ -1,0 +1,53 @@
+{
+    "description": "The 'Pima Indians Diabetes' dataset aims to predict the likelihood of diabetes based on various diagnostic measurements. It contains records from female patients of Pima Indian heritage, aged 21 or older. The dataset includes 768 instances with 8 numerical features such as number of pregnancies, plasma glucose concentration, blood pressure, skin fold thickness, serum insulin, body mass index (BMI), diabetes pedigree function, and age. The target variable, 'Outcome', is binary (0 for non-diabetic, 1 for diabetic).",
+    "task": "Predict whether a patient has diabetes based on medical diagnostic attributes.",
+    "task_type": "Classification",
+    "num_records": 768,
+    "num_features": 9,
+    "features": {
+        "Pregnancies": "Number of times pregnant (continuous, ratio)",
+        "Glucose": "Plasma glucose concentration 2 hours after an oral glucose tolerance test (continuous, ratio)",
+        "BloodPressure": "Diastolic blood pressure (mm Hg) (continuous, ratio)",
+        "SkinThickness": "Triceps skin fold thickness (mm) (continuous, ratio)",
+        "Insulin": "2-Hour serum insulin (mu U/ml) (continuous, ratio)",
+        "BMI": "Body mass index (weight in kg / height in m^2) (continuous, ratio)",
+        "DiabetesPedigreeFunction": "A measure of diabetes in the family history (continuous, ratio)",
+        "Age": "Age of the patient in years (continuous, ratio)",
+        "Outcome": "Indicating whether the patient is diabetic (1) or not diabetic (0) (categorical, nominal)"
+    },
+    "source": "https://www.kaggle.com/datasets/mathchi/diabetes-data-set",
+    "issues": {
+        "Format Inconsistency": [],
+        "Data Reduction": [
+            "Added 5 duplicate rows"
+        ],
+        "Null Value Management": [
+            "5 null values in Glucose column",
+            "35 null values in BloodPressure column",
+            "227 null values in SkinThickness column",
+            "374 null values in Insulin column",
+            "11 null values in BMI column"
+        ],
+        "Outlier Management": [
+            "Added 23 outliers to the Age column",
+            "Added 23 outliers to the Glucose column, from both sides",
+            "6 outliers present in BloodPressure column",
+            "1 outlier present in SkinThickness column",
+            "20 outliers present in Insulin column",
+            "8 outliers present in BMI column",
+            "29 outliers present in DiabetesPedigreeFunction column"
+        ],
+        "Encoding": []
+    },
+    "evaluation": {
+        "duplicate_rows": 5,
+        "null_values": {
+            "Glucose": 5,
+            "BloodPressure": 35,
+            "SkinThickness": 227,
+            "Insulin": 374,
+            "BMI": 11
+        },
+        "total_corrupted_rows": 116
+    }
+}

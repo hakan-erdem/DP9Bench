@@ -1,0 +1,67 @@
+{
+    "description":"The 'Census Income' dataset contains records from the 1994 Census, aimed at predicting whether an individual's annual income exceeds $50K based on various demographic and employment attributes. The dataset includes 15 features such as age, workclass, education, capital gain, and native country, as well as the target variable, which indicates whether the person's income is greater than $50K (labeled as '>50K') or less than or equal to $50K (labeled as '<=50K'). The dataset includes both continuous features (e.g., age, education-num, capital gain, hours-per-week) and categorical features (e.g., workclass, education, native country). The dataset provides a mixture of both personal and employment-related factors, making it suitable for classification tasks to predict high-income individuals.",
+    "task": "Predict whether annual income of an individual exceeds $50K/yr based on census data.",
+    "task_type": "Classification",
+    "num_records": 48842,
+    "num_features": 15,
+    "features": {
+        "age": "Age of the individual in years (continuous, ratio)",
+        "workclass": "Type of employment of the individual (categorical, nominal)",
+        "fnlwgt": "Final weight, representing the number of people in the population that the record represents (continuous, ratio)",
+        "education": "Highest level of education attained by the individual (categorical, ordinal)",
+        "education-num": "Number of years of education the individual has completed (continuous, ratio)",
+        "marital-status": "Marital status of the individual (categorical, nominal)",
+        "occupation": "Type of occupation the individual is employed in (categorical, nominal)",
+        "relationship": "Relationship of the individual within their household (categorical, nominal)",
+        "race": "Racial background of the individual (categorical, nominal)",
+        "sex": "Gender of the individual (categorical, nominal)",
+        "capital-gain": "Amount of capital gain the individual has (continuous, ratio)",
+        "capital-loss": "Amount of capital loss the individual has (continuous, ratio)",
+        "hours-per-week": "Number of hours the individual works per week (continuous, ratio)",
+        "native-country": "Country of origin of the individual (categorical, nominal)",
+        "income": "Income classification based on whether an individual earns more than $50K per year (categorical, nominal)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/2/adult",
+    "issues": {
+        "Format Inconsistency": [
+            "Converted 200 samples of the age column into negative",
+            "Changed 5% of the sex column into 'cat'"
+        ],
+        "Null Value Management": [
+            "963 null values in workclass column",
+            "966 null values in occupation column",
+            "274 null value in native-country column",
+            "2442 of the race column into Null"
+        ],
+        "Outlier Management": [
+            "414 outliers in age column",
+            "1453 outliers in fnlwgt column",
+            "4035 outliers in capital-gain column",
+            "2282 outliers in capital-loss column"
+        ],
+        "Encoding": [
+            "9 different features need to be encoded numerically"
+        ]
+    },
+    "evaluation": {
+        "duplicate_rows": 22,
+        "null_values": {
+            "workclass": 963,
+            "occupation": 966,
+            "native-country": 274,
+            "race": 2442
+        },
+        "total_corrupted_rows": 12549,
+        "categorical_cols": [
+            "workclass",
+            "education",
+            "marital-status",
+            "occupation",
+            "relationship",
+            "race",
+            "sex",
+            "native-country",
+            "income"
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "description": "The Bike Sharing dataset contains hourly and daily rental bike counts for the Capital Bikeshare system from 2011 to 2012, along with corresponding weather and seasonal information. Bike sharing systems automate the entire rental process, making them an efficient and popular mode of transport. This dataset is valuable for studying urban mobility, as it records explicit travel details, turning the system into a virtual sensor network for city monitoring. The dataset includes time-related attributes such as date, season, month, hour, and weekday. Weather conditions are represented by categorical and normalized numerical values for temperature, humidity, and wind speed. The target variable, 'cnt,' represents the total number of rented bikes, which is the sum of casual and registered users. This dataset is widely used for regression and time-series forecasting tasks. It is important to remember that the time-series datasets need to be sorted in chronological order before model training.",
+    "task": "Predict the total number of rented bikes based on weather, seasonal, and time-related features.",
+    "task_type": "Regression / Time-series forecasting",
+    "num_records": 17379,
+    "num_features": 14,
+    "features": {
+        "instant": "Record index (continuous, ratio)",
+        "dteday": "Date (continuous, interval)",
+        "season": "Season (1:winter, 2:spring, 3:summer, 4:fall) (categorical, nominal)",
+        "yr": "Year (0: 2011, 1: 2012) (categorical, nominal)",
+        "mnth": "Month (1 to 12) (categorical, nominal)",
+        "hr": "Hour (0 to 23) (categorical, nominal)",
+        "holiday": "Whether the day is a holiday or not (binary, categorical)",
+        "weekday": "Day of the week (categorical, nominal)",
+        "workingday": "Whether the day is a working day (binary, categorical)",
+        "weathersit": "Weather situation (categorical, nominal) (1: Clear, Few clouds, Partly cloudy, 2: Mist + Cloudy, Mist, 3: Light Snow, Light Rain + Thunderstorm, 4: Heavy Rain + Ice Pallets + Thunderstorm)",
+        "temp": "Normalized temperature in Celsius (continuous, ratio)",
+        "atemp": "Normalized feeling temperature in Celsius (continuous, ratio)",
+        "hum": "Normalized humidity (continuous, ratio)",
+        "windspeed": "Normalized wind speed (continuous, ratio)",
+        "cnt": "Total rental bikes (continuous, ratio)"
+    },
+    "source": "https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset",
+    "issues": {
+        "Data Consistency": [
+            "dteday feature is not in datetime format",
+            "Sequential order of the data is randomized. It needs to be sorted again in order to be used as time-series data.",
+            "Added around 6% illogical values (-1 and -2) to the weekday column.",
+            "Added 5% illogical values (25) to the hr (hour) column.",
+            "temp and atemp are highly correlated, one should be removed"
+        ],
+        "Null Value Management": [
+            "5% of the workingday column is set to null (categorical feature needs mode imputation)",
+            "15% of the weathersit is set to null (categorical feature again)",
+            "3% of the target column cnt is set to null, forcing those rows to be dropped"
+        ],
+        "Outlier Management": [
+            "Potential outliers already present in windspeed column",
+            "Added 100 outliers to the hum column"
+        ],
+        "Feature Engineering": []
+    },
+    "evaluation": {
+        "null_values": {
+            "workingday": 869,
+            "weathersit": 2607,
+            "cnt": 521
+        },
+        "total_corrupted_rows": 459,
+        "date_cols": [
+            "season"
+        ],
+        "high_correlation": [
+            ["temp", "atemp"]
+        ]
+    }
+}
